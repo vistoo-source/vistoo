@@ -2,6 +2,7 @@ import Showcase from "@/components/Showcase";
 import Faq from "@/components/Faq";
 import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
+import RecentArticles from "@/components/RecentArticles";
 
 export default function Home() {
   return (
@@ -248,6 +249,8 @@ export default function Home() {
           </article>
         </div>
       </section>
+
+      <RecentArticles />
       
       <section className="pricing" id="precos">
         <div className="container">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogNav from "@/components/BlogNav";
-import { formatArticleDate, type Article } from "@/lib/blog";
+import { formatArticleDate, stripFirstHeading, type Article } from "@/lib/blog";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 type PageProps = {
@@ -83,7 +83,9 @@ export default async function ArticlePage({ params }: PageProps) {
           {article.content && (
             <div
               className="article-content"
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{
+                __html: stripFirstHeading(article.content),
+              }}
             />
           )}
         </div>

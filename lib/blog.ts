@@ -17,6 +17,10 @@ export function slugify(title: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+export function stripFirstHeading(html: string): string {
+  return html.replace(/<h[1-6][^>]*>[\s\S]*?<\/h[1-6]>/i, "").trim();
+}
+
 export function formatArticleDate(iso: string): string {
   return new Date(iso).toLocaleDateString("pt-PT", {
     day: "numeric",
