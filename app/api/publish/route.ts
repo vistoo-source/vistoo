@@ -4,10 +4,23 @@ import { slugify } from "@/lib/blog";
 
 type PublishBody = {
   title?: string;
+  article_title?: string;
+  name?: string;
   content?: string;
+  html_content?: string;
+  body?: string;
+  article_content?: string;
   excerpt?: string;
   slug?: string;
 };
+
+function pickString(...values: (string | undefined)[]): string | undefined {
+  for (const value of values) {
+    const trimmed = value?.trim();
+    if (trimmed) return trimmed;
+  }
+  return undefined;
+}
 
 function getAuthToken(request: NextRequest): string | null {
   const auth = request.headers.get("authorization");
@@ -37,6 +50,15 @@ async function uniqueSlug(
 }
 
 export async function POST(request: NextRequest) {
+  let body: PublishBody;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  console.log("SEOForge payload:", JSON.stringify(body));
+
   const secret = process.env.WEBHOOK_SECRET;
   if (!secret) {
     return NextResponse.json(
@@ -50,19 +72,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  let body: PublishBody;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
-  }
-
-  const title = body.title?.trim();
+  const title = pickString(body.title, body.article_title, body.name);
   if (!title) {
-    return NextResponse.json({ error: "title is required" }, { status: 400 });
+    return NextResponse.json(
+      { error: "title is required (title, article_title, or name)" },
+      { status: 400 }
+    );
   }
 
-  const content = body.content?.trim() ?? "";
+  const content =
+    pickString(
+      body.content,
+      body.html_content,
+      body.body,
+      body.article_content
+    ) ?? "";
   const excerpt = body.excerpt?.trim() ?? "";
   const baseSlug = slugify(body.slug?.trim() || title);
 
