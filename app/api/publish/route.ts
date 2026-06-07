@@ -2,16 +2,25 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { slugify } from "@/lib/blog";
 
-type PublishBody = {
+type ArticleFields = {
   title?: string;
   article_title?: string;
   name?: string;
   content?: string;
+  content_html?: string;
   html_content?: string;
   body?: string;
   article_content?: string;
   excerpt?: string;
+  meta_description?: string;
   slug?: string;
+};
+
+type PublishBody = ArticleFields & {
+  event_type?: string;
+  data?: {
+    article?: ArticleFields;
+  };
 };
 
 function pickString(...values: (string | undefined)[]): string | undefined {
@@ -72,7 +81,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const title = pickString(body.title, body.article_title, body.name);
+  const article = body.data?.article;
+  const src = { ...body, ...article };
+
+  const title = pickString(src.title, src.article_title, src.name);
   if (!title) {
     return NextResponse.json(
       { error: "title is required (title, article_title, or name)" },
@@ -82,13 +94,15 @@ export async function POST(request: NextRequest) {
 
   const content =
     pickString(
-      body.content,
-      body.html_content,
-      body.body,
-      body.article_content
+      src.content_html,
+      src.content,
+      src.html_content,
+      src.body,
+      src.article_content
     ) ?? "";
-  const excerpt = body.excerpt?.trim() ?? "";
-  const baseSlug = slugify(body.slug?.trim() || title);
+  const excerpt =
+    pickString(src.meta_description, src.excerpt) ?? "";
+  const baseSlug = slugify(src.slug?.trim() || title);
 
   if (!baseSlug) {
     return NextResponse.json(
