@@ -4,6 +4,8 @@ import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import RecentArticles from "@/components/RecentArticles";
 
+export const revalidate = 300;
+
 export default function Home() {
   return (
     <>
