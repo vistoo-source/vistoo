@@ -196,7 +196,7 @@ export default function ContactForm() {
                 onClick={() => setSelectedPlan(value)}
                 aria-pressed={active}
               >
-                {plan.featured && (
+                {'featured' in plan && plan.featured && (
                   <span className="plan-card__badge">Mais escolhido</span>
                 )}
                 <span className="plan-card__label">{plan.label}</span>
