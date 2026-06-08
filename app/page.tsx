@@ -331,8 +331,8 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <span className="kicker">Preços</span>
-            <h2 className="h2">Setup único.<br/>€55/mês de suporte incluído.</h2>
-            <p className="section-sub" style={{color: 'rgba(255,255,255,.45)'}}>Dois planos, a mesma manutenção mensal. Tudo transparente desde o primeiro dia — sem surpresas no segundo ano.</p>
+            <h2 className="h2">Setup único.<br/>Resultados mensais.</h2>
+            <p className="section-sub" style={{color: 'rgba(255,255,255,.45)'}}>Dois planos, um add-on. Tudo transparente desde o primeiro dia — sem surpresas no segundo ano.</p>
           </div>
           <div className="price-grid">
       
@@ -384,9 +384,26 @@ export default function Home() {
             </article>
       
           </div>
-          <p style={{textAlign: 'center', marginTop: '20px', fontSize: '13.5px', color: 'rgba(255,255,255,.35)'}}>
-            Optimização SEO + IA disponível como add-on opcional por <span style={{color: '#7fa8ff', fontWeight: 600}}>+€25/mês</span>
-          </p>
+
+          <div className="addon-block">
+            <div className="addon-block__left">
+              <span className="addon-block__badge">Add-on opcional</span>
+              <h3 className="addon-block__title">Crescimento SEO com IA</h3>
+              <div className="addon-block__price">
+                <span className="addon-block__amount">+€89</span>
+                <span className="addon-block__per">/mês</span>
+              </div>
+              <p className="addon-block__sub">Compatível com qualquer plano. Cancela quando quiseres.</p>
+              <a href="#contacto" className="btn btn--primary">Adicionar ao meu plano</a>
+            </div>
+            <ul className="addon-block__list">
+              <li>4 artigos de blog por mês optimizados para SEO com IA</li>
+              <li>Optimizações técnicas semanais ao site</li>
+              <li>Relatório mensal de performance com dados reais (GA4)</li>
+              <li>Plano de acção para o mês seguinte</li>
+              <li>Sugestões de conteúdo para redes sociais</li>
+            </ul>
+          </div>
         </div>
       </section>
       

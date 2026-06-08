@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import BlogNav from "@/components/BlogNav";
-import { formatArticleDate, type Article } from "@/lib/blog";
+import BlogCard from "@/components/BlogCard";
+import { type Article } from "@/lib/blog";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -50,26 +50,7 @@ export default async function BlogPage() {
           ) : (
             <div className="blog__grid">
               {articles.map((article) => (
-                <article key={article.id} className="blog-card">
-                  <time
-                    className="blog-card__date"
-                    dateTime={article.published_at}
-                  >
-                    {formatArticleDate(article.published_at)}
-                  </time>
-                  <h2 className="blog-card__title">
-                    <Link href={`/blog/${article.slug}`}>{article.title}</Link>
-                  </h2>
-                  {article.excerpt && (
-                    <p className="blog-card__excerpt">{article.excerpt}</p>
-                  )}
-                  <Link
-                    href={`/blog/${article.slug}`}
-                    className="blog-card__link"
-                  >
-                    Ler artigo →
-                  </Link>
-                </article>
+                <BlogCard key={article.id} {...article} />
               ))}
             </div>
           )}
