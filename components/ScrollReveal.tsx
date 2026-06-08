@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 
 const STAGGER_PARENTS = [
-  ".feat-grid",
-  ".schedule__cols",
+  ".feat-bento",
+  ".proc-grid",
   ".price-grid",
   ".testi-grid",
 ];
@@ -15,9 +15,9 @@ const REVEAL_TARGETS = [
   ".port-head",
   ".logos__title",
   ".logos__marquee",
-  ".schedule",
+  ".proc-grid",
   ".feat-card",
-  ".sc",
+  ".proc-card",
   ".price-card",
   ".showcase",
   ".showcase__list",
@@ -27,10 +27,9 @@ const REVEAL_TARGETS = [
   ".acc__item",
   ".contact__copy",
   ".contact__form",
-  ".footer__brand",
-  ".footer__cols",
-  ".footer__bottom",
 ];
+
+const FOOTER_TARGETS = [".footer__brand", ".footer__cols", ".footer__bottom"];
 
 export default function ScrollReveal() {
   useEffect(() => {
@@ -74,7 +73,33 @@ export default function ScrollReveal() {
 
     els.forEach((el) => io.observe(el));
 
-    return () => io.disconnect();
+    // Footer: observe the container so all parts reveal together
+    const footer = document.querySelector(".footer");
+    const footerEls = FOOTER_TARGETS.map((sel) =>
+      document.querySelector(sel)
+    ).filter(Boolean) as Element[];
+
+    footerEls.forEach((el, i) => {
+      el.classList.add("reveal");
+      (el as HTMLElement).style.setProperty("--reveal-delay", `${i * 80}ms`);
+    });
+
+    const footerIO = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          footerEls.forEach((el) => el.classList.add("in-view"));
+          footerIO.disconnect();
+        }
+      },
+      { threshold: 0.05, rootMargin: "0px" }
+    );
+
+    if (footer) footerIO.observe(footer);
+
+    return () => {
+      io.disconnect();
+      footerIO.disconnect();
+    };
   }, []);
 
   return null;

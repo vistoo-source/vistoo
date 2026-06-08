@@ -155,37 +155,91 @@ export default function Home() {
             <h2 className="h2">Tudo o que uma clínica precisa,<br/>num só site.</h2>
             <p className="section-sub">Componentes pensados para o sector da estética — desde o primeiro clique até à marcação confirmada.</p>
           </div>
-          <div className="feat-grid">
-            <article className="feat-card">
-              <div className="feat-card__icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/><circle cx="12" cy="14" r="2" fill="currentColor" stroke="none"/></svg>
+          <div className="feat-bento">
+            <article className="feat-card feat-card--large">
+              <div className="feat-card__body">
+                <div className="feat-card__icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/><circle cx="12" cy="14" r="2" fill="currentColor" stroke="none"/></svg>
+                </div>
+                <h3>Marcações online 24/7</h3>
+                <p>Integração com Google Calendar e Doctoralia. As pacientes marcam sem ligar — a recepção foca-se no atendimento.</p>
               </div>
-              <h3>Marcações online 24/7</h3>
-              <p>Integração com Google Calendar e Doctoralia. As pacientes marcam sem ligar — a recepção foca-se no atendimento.</p>
-            </article>
-      
-            <article className="feat-card">
-              <div className="feat-card__icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <div className="feat-mock feat-mock--calendar" aria-hidden="true">
+                <div className="feat-cal">
+                  <div className="feat-cal__head">
+                    <span className="feat-cal__month">Junho 2026</span>
+                    <span className="feat-cal__dots"><i /><i /><i /></span>
+                  </div>
+                  <div className="feat-cal__slots">
+                    <div className="feat-cal__slot feat-cal__slot--booked">
+                      <span className="feat-cal__time">10:00</span>
+                      <span className="feat-cal__label">Limpeza de pele</span>
+                      <span className="feat-cal__dot" />
+                    </div>
+                    <div className="feat-cal__slot feat-cal__slot--booked">
+                      <span className="feat-cal__time">14:30</span>
+                      <span className="feat-cal__label">Botox consulta</span>
+                      <span className="feat-cal__dot" />
+                    </div>
+                    <div className="feat-cal__slot feat-cal__slot--booked">
+                      <span className="feat-cal__time">16:00</span>
+                      <span className="feat-cal__label">Peeling químico</span>
+                      <span className="feat-cal__dot" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3>SEO local optimizado</h3>
-              <p>Estrutura, conteúdo e Google Business Profile preparados para aparecer no topo das pesquisas da sua cidade.</p>
             </article>
-      
-            <article className="feat-card">
-              <div className="feat-card__icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 19V5l8 6 8-6v14"/><path d="M4 19h16"/></svg>
+
+            <article className="feat-card feat-card--small">
+              <div className="feat-card__icon feat-card__icon--lg">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 19V5l8 6 8-6v14"/><path d="M4 19h16"/></svg>
               </div>
               <h3>Mobile-first, sempre</h3>
               <p>83% das pacientes pesquisam pelo telemóvel. Cada página é desenhada primeiro para o ecrã pequeno.</p>
             </article>
-      
-            <article className="feat-card">
-              <div className="feat-card__icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9"/><path d="M3 12h6m3-6v6l4 2"/></svg>
+
+            <article className="feat-card feat-card--small">
+              <div className="feat-card__icon feat-card__icon--lg">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9"/><path d="M3 12h6m3-6v6l4 2"/></svg>
               </div>
               <h3>Velocidade premium</h3>
               <p>Carregamento abaixo de 1,2 segundos. Score 95+ no PageSpeed Insights, garantido por escrito.</p>
+            </article>
+
+            <article className="feat-card feat-card--large">
+              <div className="feat-card__body">
+                <div className="feat-card__icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                </div>
+                <h3>SEO local optimizado</h3>
+                <p>Estrutura, conteúdo e Google Business Profile preparados para aparecer no topo das pesquisas da sua cidade.</p>
+              </div>
+              <div className="feat-mock feat-mock--google" aria-hidden="true">
+                <div className="feat-google">
+                  <div className="feat-google__bar">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <span>clínica estética Faro</span>
+                  </div>
+                  <div className="feat-google__results">
+                    <div className="feat-google__result feat-google__result--top">
+                      <span className="feat-google__rank">1</span>
+                      <div>
+                        <span className="feat-google__title">Clínica Essence — Estética Avançada</span>
+                        <span className="feat-google__url">essenceclinic.pt</span>
+                        <span className="feat-google__stars">★★★★★ 4.9 · Estética · Faro</span>
+                      </div>
+                    </div>
+                    <div className="feat-google__result">
+                      <span className="feat-google__rank">2</span>
+                      <div>
+                        <span className="feat-google__title feat-google__title--muted">Outro resultado...</span>
+                        <span className="feat-google__url feat-google__url--muted">exemplo.pt</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </article>
           </div>
         </div>
@@ -193,62 +247,81 @@ export default function Home() {
       
       <section className="process" id="processo">
         <div className="container">
-          <div className="section-head section-head--left">
-            <span className="kicker">Processo</span>
-            <h2 className="h2">Do briefing ao lançamento<br/>em 14 dias.</h2>
-            <p className="section-sub" style={{marginLeft: 0}}>Quatro etapas, totalmente remotas. Sabe sempre em que dia está e o que vem a seguir.</p>
+          <div className="proc-header">
+            <div className="proc-header__left">
+              <span className="kicker kicker--on-dark">Processo</span>
+              <h2 className="h2 proc-header__h2">Do briefing ao lançamento<br/>em 14 dias.</h2>
+              <p className="proc-header__sub">Quatro etapas, totalmente remotas. Sabe sempre em que dia está e o que vem a seguir.</p>
+            </div>
+            <div className="proc-meta">
+              <span className="proc-meta__item">14 dias úteis</span>
+              <span className="proc-meta__item">100% remoto</span>
+              <span className="proc-meta__item">1 ronda de revisões</span>
+            </div>
           </div>
-      
-          <article className="schedule" aria-label="Cronograma do processo">
-            <header className="schedule__head">
-              <span className="schedule__title">
-                <span className="schedule__pip"></span>
-                Cronograma
-              </span>
-              <span className="schedule__facts">
-                <span>14 dias úteis</span>
-                <span className="sep" aria-hidden="true"></span>
-                <span>100% remoto</span>
-                <span className="sep" aria-hidden="true"></span>
-                <span>1 ronda de revisões</span>
-              </span>
-              <span className="schedule__end">
-                Online
-                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 12L12 4M12 4H6M12 4v6"/></svg>
-              </span>
-            </header>
-      
-            <ol className="schedule__cols">
-              <li className="sc">
-                <div className="sc__day">Dia <span>1</span></div>
-                <span className="sc__step">Etapa 01</span>
-                <h3>Descoberta</h3>
-                <p>Reunião de 45 minutos para entender a clínica, os tratamentos e o tipo de paciente.</p>
-                <span className="sc__deliv">Briefing aprovado</span>
-              </li>
-              <li className="sc">
-                <div className="sc__day">Dias <span>2–4</span></div>
-                <span className="sc__step">Etapa 02</span>
-                <h3>Estratégia & copy</h3>
-                <p>Definimos arquitectura, palavras-chave e escrevemos os textos. Aprovação antes do design.</p>
-                <span className="sc__deliv">Wireframe + copy</span>
-              </li>
-              <li className="sc">
-                <div className="sc__day">Dias <span>5–12</span></div>
-                <span className="sc__step">Etapa 03</span>
-                <h3>Design & desenvolvimento</h3>
-                <p>Protótipo navegável no Figma e depois construção em código limpo, com uma ronda de revisões.</p>
-                <span className="sc__deliv">Site em staging</span>
-              </li>
-              <li className="sc sc--final">
-                <div className="sc__day">Dia <span>14</span></div>
-                <span className="sc__step">Etapa 04</span>
-                <h3>Lançamento</h3>
-                <p>Migração, SEO, analytics e formação de 30 minutos para a sua equipa. O site fica online.</p>
-                <span className="sc__deliv">Site público</span>
-              </li>
-            </ol>
-          </article>
+
+          <ol className="proc-grid" aria-label="Cronograma do processo">
+            <li className="proc-card">
+              <span className="proc-card__watermark" aria-hidden="true">01</span>
+              <div className="proc-card__content">
+                <div className="proc-card__top">
+                  <span className="proc-card__etapa">Etapa 01</span>
+                  <span className="proc-card__day">Dia <strong>1</strong></span>
+                </div>
+                <h3 className="proc-card__title">Descoberta</h3>
+                <p className="proc-card__desc">Reunião de 45 minutos para entender a clínica, os tratamentos e o tipo de paciente.</p>
+                <span className="proc-card__deliv">
+                  <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 8l2.5 2.5L13 5"/></svg>
+                  Briefing aprovado
+                </span>
+              </div>
+            </li>
+            <li className="proc-card">
+              <span className="proc-card__watermark" aria-hidden="true">02</span>
+              <div className="proc-card__content">
+                <div className="proc-card__top">
+                  <span className="proc-card__etapa">Etapa 02</span>
+                  <span className="proc-card__day">Dias <strong>2–4</strong></span>
+                </div>
+                <h3 className="proc-card__title">Estratégia & copy</h3>
+                <p className="proc-card__desc">Definimos arquitectura, palavras-chave e escrevemos os textos. Aprovação antes do design.</p>
+                <span className="proc-card__deliv">
+                  <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 8l2.5 2.5L13 5"/></svg>
+                  Wireframe + copy
+                </span>
+              </div>
+            </li>
+            <li className="proc-card">
+              <span className="proc-card__watermark" aria-hidden="true">03</span>
+              <div className="proc-card__content">
+                <div className="proc-card__top">
+                  <span className="proc-card__etapa">Etapa 03</span>
+                  <span className="proc-card__day">Dias <strong>5–12</strong></span>
+                </div>
+                <h3 className="proc-card__title">Design & desenvolvimento</h3>
+                <p className="proc-card__desc">Protótipo navegável no Figma e depois construção em código limpo, com uma ronda de revisões.</p>
+                <span className="proc-card__deliv">
+                  <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 8l2.5 2.5L13 5"/></svg>
+                  Site em staging
+                </span>
+              </div>
+            </li>
+            <li className="proc-card proc-card--launch">
+              <span className="proc-card__watermark" aria-hidden="true">04</span>
+              <div className="proc-card__content">
+                <div className="proc-card__top">
+                  <span className="proc-card__etapa">Etapa 04</span>
+                  <span className="proc-card__day">Dia <strong>14</strong></span>
+                </div>
+                <h3 className="proc-card__title">Lançamento</h3>
+                <p className="proc-card__desc">Migração, SEO, analytics e formação de 30 minutos para a sua equipa. O site fica online.</p>
+                <span className="proc-card__deliv proc-card__deliv--accent">
+                  <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 8l2.5 2.5L13 5"/></svg>
+                  Site público
+                </span>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -259,7 +332,7 @@ export default function Home() {
           <div className="section-head">
             <span className="kicker">Preços</span>
             <h2 className="h2">Setup único.<br/>€55/mês de suporte incluído.</h2>
-            <p className="section-sub">Dois planos, a mesma manutenção mensal. Tudo transparente desde o primeiro dia — sem surpresas no segundo ano.</p>
+            <p className="section-sub" style={{color: 'rgba(255,255,255,.45)'}}>Dois planos, a mesma manutenção mensal. Tudo transparente desde o primeiro dia — sem surpresas no segundo ano.</p>
           </div>
           <div className="price-grid">
       
@@ -311,8 +384,8 @@ export default function Home() {
             </article>
       
           </div>
-          <p style={{textAlign: 'center', marginTop: '20px', fontSize: '13.5px', color: 'var(--muted)'}}>
-            Optimização SEO + IA disponível como add-on opcional por <span style={{color: 'var(--navy)', fontWeight: 600}}>+€25/mês</span>
+          <p style={{textAlign: 'center', marginTop: '20px', fontSize: '13.5px', color: 'rgba(255,255,255,.35)'}}>
+            Optimização SEO + IA disponível como add-on opcional por <span style={{color: '#7fa8ff', fontWeight: 600}}>+€25/mês</span>
           </p>
         </div>
       </section>
@@ -350,7 +423,7 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <span className="kicker">Testemunhos</span>
-            <h2 className="h2">O que as clínicas dizem.</h2>
+            <h2 className="h2" style={{color: '#fff'}}>O que as clínicas dizem.</h2>
           </div>
           <div className="testi-grid">
             <figure className="testi-card">
@@ -397,8 +470,8 @@ export default function Home() {
         <div className="container contact__grid">
           <div className="contact__copy">
             <span className="kicker">Contacto</span>
-            <h2 className="h2">Pronto para criar o site<br/>da sua clínica de estética?</h2>
-            <p className="section-sub">Respondemos em menos de 24 horas. Sem compromisso, sem comerciais a ligar.</p>
+            <h2 className="h2" style={{color: '#fff'}}>Pronto para criar o site<br/>da sua clínica de estética?</h2>
+            <p className="section-sub" style={{marginLeft: 0, color: 'rgba(255,255,255,.45)'}}>Respondemos em menos de 24 horas. Sem compromisso, sem comerciais a ligar.</p>
             <ul className="contact__list">
               <li>
                 <span className="ci"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
