@@ -21,6 +21,7 @@ type PublishBody = ArticleFields & {
   event_type?: string;
   data?: {
     article?: ArticleFields;
+    articles?: ArticleFields[];
   };
 };
 
@@ -67,7 +68,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  console.log("SEOForge payload:", JSON.stringify(body));
+  console.log("Publish payload:", JSON.stringify(body));
 
   const secret = process.env.WEBHOOK_SECRET;
   if (!secret) {
@@ -82,56 +83,70 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const article = body.data?.article;
-  const src = { ...body, ...article };
-
-  const title = pickString(src.title, src.article_title, src.name);
-  if (!title) {
-    return NextResponse.json(
-      { error: "title is required (title, article_title, or name)" },
-      { status: 400 }
-    );
-  }
-
-  const content =
-    pickString(
-      src.content_html,
-      src.content,
-      src.html_content,
-      src.body,
-      src.article_content
-    ) ?? "";
-  const excerpt =
-    pickString(src.meta_description, src.excerpt) ?? "";
-  const baseSlug = slugify(src.slug?.trim() || title);
-
-  if (!baseSlug) {
-    return NextResponse.json(
-      { error: "Could not generate a valid slug" },
-      { status: 400 }
-    );
-  }
+  // Support Outrank-style array (data.articles), SEOForge-style single (data.article),
+  // and flat payloads (title/content at root).
+  const articlesFromArray = body.data?.articles;
+  const sources: ArticleFields[] =
+    articlesFromArray && articlesFromArray.length > 0
+      ? articlesFromArray.map((a) => ({ ...body, ...a }))
+      : [{ ...body, ...body.data?.article }];
 
   try {
     const supabase = createSupabaseAdminClient();
-    const slug = await uniqueSlug(supabase, baseSlug);
+    const slugs: string[] = [];
 
-    const { error } = await supabase.from("articles").insert({
-      title,
-      slug,
-      content,
-      excerpt,
-      status: "published",
-    });
+    for (const src of sources) {
+      const title = pickString(src.title, src.article_title, src.name);
+      if (!title) {
+        return NextResponse.json(
+          { error: "title is required (title, article_title, or name)" },
+          { status: 400 }
+        );
+      }
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      const content =
+        pickString(
+          src.content_html,
+          src.content,
+          src.html_content,
+          src.body,
+          src.article_content
+        ) ?? "";
+      const excerpt = pickString(src.meta_description, src.excerpt) ?? "";
+      const baseSlug = slugify(src.slug?.trim() || title);
+
+      if (!baseSlug) {
+        return NextResponse.json(
+          { error: "Could not generate a valid slug" },
+          { status: 400 }
+        );
+      }
+
+      const slug = await uniqueSlug(supabase, baseSlug);
+
+      const { error } = await supabase.from("articles").insert({
+        title,
+        slug,
+        content,
+        excerpt,
+        status: "published",
+      });
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+
+      slugs.push(slug);
     }
 
     revalidatePath("/");
     revalidatePath("/blog");
 
-    return NextResponse.json({ success: true, slug });
+    return NextResponse.json({
+      success: true,
+      slug: slugs[0],
+      slugs,
+    });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });
