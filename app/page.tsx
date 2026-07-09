@@ -3,122 +3,14 @@ import Faq from "@/components/Faq";
 import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import RecentArticles from "@/components/RecentArticles";
+import DarkHero from "@/components/DarkHero";
 
 export const revalidate = 300;
 
 export default function Home() {
   return (
     <>
-      <header className="nav" id="nav">
-        <div className="container nav__inner">
-          <a href="#" className="brand" aria-label="Vistoo">
-            <img src="/assets/logo.png" alt="Vistoo — Agência de sites para clínicas de estética" className="brand__logo" />
-            <span className="brand__name">Vistoo</span>
-          </a>
-          <nav className="nav__links" aria-label="Principal">
-            <a href="#funcionalidades">Funcionalidades</a>
-            <a href="#processo">Processo</a>
-            <a href="#precos">Preços</a>
-            <a href="#trabalhos">Trabalhos</a>
-            <a href="#faq">FAQ</a>
-          </nav>
-          <div className="nav__cta">
-            <a href="#contacto" className="btn btn--primary btn--sm">Pedir orçamento</a>
-          </div>
-        </div>
-      </header>
-      
-      <section className="hero">
-        <div className="container hero__grid">
-          <div className="hero__copy">
-            <div className="hero__proof">
-              <div className="vh-proof">
-                <div className="vh-avatars"><span>DF</span><span>SE</span><span>IR</span><span>EC</span></div>
-                <span><span className="vh-stars">★★★★★</span>  <b>+100 clínicas</b> em todo o país</span>
-              </div>
-            </div>
-            <h1 className="display">
-              O seu Website<br /> merece ser <span style={{fontWeight: 800, color: '#3B6FD4'}}>Vistoo.</span>
-            </h1>
-            <p className="lede">
-              Desenhamos e construímos websites para clínicas de estética em Portugal —
-              rápidos, elegantes e pensados para transformar visitas em marcações.
-            </p>
-            <div className="hero__ctas">
-              <a href="#contacto" className="btn btn--primary">Marcar reunião</a>
-              <a href="#trabalhos" className="btn btn--ghost">Ver trabalhos →</a>
-            </div>
-            <ul className="hero__bullets">
-              <li><svg viewBox="0 0 16 16" className="check"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg> Entrega em 14 dias úteis</li>
-              <li><svg viewBox="0 0 16 16" className="check"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg> SEO local incluído</li>
-              <li><svg viewBox="0 0 16 16" className="check"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg> Marcações online</li>
-            </ul>
-          </div>
-      
-          <div className="hero__mock" aria-hidden="true">
-            <div className="browser">
-              <div className="browser__bar">
-                <span className="dots"><i></i><i></i><i></i></span>
-                <div className="browser__url">
-                  <svg viewBox="0 0 16 16" width="12" height="12"><path d="M5 7V5a3 3 0 016 0v2" fill="none" stroke="currentColor" strokeWidth="1.5"/><rect x="3.5" y="7" width="9" height="6.5" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg>
-                  danielafernandesbeauty.pt
-                </div>
-                <span className="browser__spacer"></span>
-              </div>
-              <div className="browser__body">
-                <div className="mock-nav">
-                  <div className="mock-nav__brand">
-                    <span className="mock-logo"></span>
-                    <span>Daniela Fernandes</span>
-                  </div>
-                  <div className="mock-nav__links">
-                    <span>Tratamentos</span><span>Equipa</span><span>Preços</span>
-                    <span className="mock-pill">Marcar</span>
-                  </div>
-                </div>
-                <div className="mock-hero">
-                  <div className="mock-tag">★ 4.9 · 312 avaliações</div>
-                  <div className="mock-title">
-                    <span className="line-a"></span>
-                    <span className="line-b"></span>
-                  </div>
-                  <div className="mock-sub">
-                    <span></span><span></span>
-                  </div>
-                  <div className="mock-ctas">
-                    <span className="mock-btn mock-btn--solid">Marcar consulta</span>
-                    <span className="mock-btn mock-btn--ghost">Tratamentos</span>
-                  </div>
-                </div>
-                <div className="mock-grid">
-                  <div className="mock-card"><span className="mock-thumb"></span><span className="mock-lbl"></span></div>
-                  <div className="mock-card"><span className="mock-thumb"></span><span className="mock-lbl"></span></div>
-                  <div className="mock-card"><span className="mock-thumb"></span><span className="mock-lbl"></span></div>
-                </div>
-              </div>
-            </div>
-      
-            <div className="float float--booking">
-              <div className="float__avatar" aria-hidden="true">SM</div>
-              <div className="float__body">
-                <div className="float__title">Nova Marcação</div>
-                <div className="float__sub">Sofia M. · Limpeza de pele · 14:30</div>
-              </div>
-              <span className="float__pulse"></span>
-            </div>
-      
-            <div className="float float--google">
-              <div className="float__google">
-                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.5 12.27c0-.74-.07-1.45-.19-2.13H12v4.04h5.89a5.04 5.04 0 01-2.18 3.31v2.75h3.53c2.07-1.9 3.26-4.71 3.26-7.97z"/><path fill="#34A853" d="M12 23c2.95 0 5.42-.98 7.23-2.66l-3.53-2.75c-.98.66-2.23 1.06-3.7 1.06-2.84 0-5.25-1.92-6.11-4.5H2.24v2.82A11 11 0 0012 23z"/><path fill="#FBBC05" d="M5.89 14.15a6.6 6.6 0 010-4.3V7.03H2.24a11 11 0 000 9.94l3.65-2.82z"/><path fill="#EA4335" d="M12 5.38c1.6 0 3.04.55 4.18 1.63l3.13-3.13C17.42 2.1 14.95 1 12 1A11 11 0 002.24 7.03l3.65 2.82C6.75 7.3 9.16 5.38 12 5.38z"/></svg>
-              </div>
-              <div className="float__body">
-                <div className="float__title">Google #1</div>
-                <div className="float__sub">"clínica estética porto"</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <DarkHero />
       
       <section className="logos">
         <div className="container">
