@@ -1,14 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Hls from "hls.js";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, ChevronDown } from "lucide-react";
-
-const VIDEO_SRC = "https://stream.mux.com/T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.m3u8";
+import Silk from "./Silk";
 
 export default function DarkHero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [isHeroReady, setIsHeroReady] = useState(false);
 
   useEffect(() => {
@@ -63,66 +60,8 @@ export default function DarkHero() {
   }, [isHeroReady]);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    let fallbackTimer: number | undefined;
-
-    const markReady = () => {
-      setIsHeroReady(true);
-    };
-
-    const onLoadedData = () => {
-      markReady();
-    };
-
-    video.addEventListener("loadeddata", onLoadedData, { once: true });
-    fallbackTimer = window.setTimeout(markReady, 2200);
-
-    if (Hls.isSupported()) {
-      const hls = new Hls({
-        enableWorker: true,
-        lowLatencyMode: true,
-        capLevelToPlayerSize: true,
-        backBufferLength: 30,
-        maxBufferLength: 30,
-      });
-      hls.loadSource(VIDEO_SRC);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch((e) => console.log("Auto-play prevented:", e));
-      });
-      return () => {
-        video.removeEventListener("loadeddata", onLoadedData);
-        if (fallbackTimer) {
-          window.clearTimeout(fallbackTimer);
-        }
-        hls.destroy();
-      };
-    }
-
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = VIDEO_SRC;
-
-      const handleLoadedMetadata = () => {
-        video.play().catch((e) => console.log("Auto-play prevented:", e));
-      };
-
-      video.addEventListener("loadedmetadata", handleLoadedMetadata);
-      return () => {
-        video.removeEventListener("loadeddata", onLoadedData);
-        if (fallbackTimer) {
-          window.clearTimeout(fallbackTimer);
-        }
-        video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      };
-    }
-
-    return () => {
-      video.removeEventListener("loadeddata", onLoadedData);
-      if (fallbackTimer) {
-        window.clearTimeout(fallbackTimer);
-      }
-    };
+    const fallbackTimer = window.setTimeout(() => setIsHeroReady(true), 900);
+    return () => window.clearTimeout(fallbackTimer);
   }, []);
 
   return (
@@ -158,15 +97,9 @@ export default function DarkHero() {
       </div>
 
       <div className="dark-hero__bg">
-        <video
-          ref={videoRef}
-          className="dark-hero__video"
-          muted
-          loop
-          playsInline
-          autoPlay
-          preload="metadata"
-        />
+        <div className="dark-hero__silk" aria-hidden="true">
+          <Silk speed={6.9} scale={1.3} color="#307af7" noiseIntensity={0} rotation={4.78} />
+        </div>
         <div className="dark-hero__overlay" aria-hidden="true" />
         <div className="dark-hero__gradient dark-hero__gradient--top-left" aria-hidden="true" />
         <div className="dark-hero__gradient dark-hero__gradient--bottom-right" aria-hidden="true" />
@@ -189,7 +122,11 @@ export default function DarkHero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            O seu Website merece ser <span className="dark-hero__headline-serif">Vistoo</span>.
+            O seu website
+            <br />
+            merece ser
+            <br />
+            <span className="dark-hero__headline-serif">Vistoo</span>.
           </motion.h1>
 
           <motion.p
