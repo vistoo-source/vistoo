@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "set NEXT_TRACE_SPAN_THRESHOLD_MS=999999999&& next dev",
-    "build": "set NEXT_TRACE_SPAN_THRESHOLD_MS=999999999&& next build",
-    "start": "set NEXT_TRACE_SPAN_THRESHOLD_MS=999999999&& next start",
+    "dev": "next dev",
+    "dev:win": "set NEXT_TRACE_SPAN_THRESHOLD_MS=999999999&& next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
