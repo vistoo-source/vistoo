@@ -4,21 +4,12 @@ import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import RecentArticles from "@/components/RecentArticles";
 import DarkHero from "@/components/DarkHero";
-import TargetCursor from "@/components/TargetCursor";
 
 export const revalidate = 300;
 
 export default function Home() {
   return (
     <>
-      <TargetCursor
-        targetSelector='[class*="card"], [class*="Card"], .cursor-target'
-        spinDuration={2.3}
-        hideDefaultCursor={true}
-        parallaxOn={false}
-        hoverDuration={0.1}
-        cursorColorOnTarget="#3B82F6"
-      />
       <DarkHero />
       
       <section className="logos">

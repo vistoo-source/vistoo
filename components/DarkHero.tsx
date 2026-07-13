@@ -113,7 +113,7 @@ export default function DarkHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Websites premium para clínicas de estética
+            Para clínicas de estética que querem crescer
           </motion.p>
 
           <motion.h1
@@ -122,11 +122,9 @@ export default function DarkHero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            O seu website
+            Websites que
             <br />
-            merece ser
-            <br />
-            <span className="dark-hero__headline-serif">Vistoo</span>.
+            <span className="dark-hero__headline-serif">vendem</span>.
           </motion.h1>
 
           <motion.p
